@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: echo-server
-          image: registry.cn-hangzhou.aliyuncs.com/haoshuwei24/echo-server:v1.0
+          image: registry.cn-hangzhou.aliyuncs.com/haoshuwei24/echo-server:v2.0
           imagePullPolicy: Always
           resources:
             requests:
