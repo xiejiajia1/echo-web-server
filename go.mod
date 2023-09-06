@@ -1,4 +1,4 @@
-module shuwei.hsw/echo-server
+module github.com/AliyunContainerService/echo-web-server
 
 go 1.18
 

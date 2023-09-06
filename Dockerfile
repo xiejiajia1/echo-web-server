@@ -10,7 +10,7 @@ RUN echo 'deb http://mirrors.aliyun.com/debian/ buster-backports main non-free c
 RUN echo 'deb-src http://mirrors.aliyun.com/debian/ buster-backports main non-free contrib' >> /etc/apt/sources.list
 
 ENV GOPROXY=https://goproxy.cn,direct
-ARG PACKAGE=github.com/haoshuwei/echo-server
+ARG PACKAGE=github.com/AliyunContainerService/echo-web-server
 
 RUN mkdir -p /go/src/${PACKAGE}
 WORKDIR /go/src/${PACKAGE}
@@ -18,12 +18,12 @@ WORKDIR /go/src/${PACKAGE}
 COPY . .
 RUN go mod download
 # Build
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -o echo-server main.go
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -o echo-web-server main.go
 
 # Copy the controller-manager into a thin image
 FROM registry.cn-hangzhou.aliyuncs.com/acs/alpine:3.13.2-base
 WORKDIR /
-COPY --from=builder /go/src/github.com/haoshuwei/echo-server .
+COPY --from=builder /go/src/github.com/AliyunContainerService/echo-web-server .
 USER 65532:65532
 
-ENTRYPOINT ["/echo-server"]
+ENTRYPOINT ["/echo-web-server"]
