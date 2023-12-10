@@ -14,7 +14,6 @@ ARG PACKAGE=github.com/AliyunContainerService/echo-web-server
 
 RUN mkdir -p /go/src/${PACKAGE}
 WORKDIR /go/src/${PACKAGE}
-
 COPY . .
 RUN go mod download
 # Build
